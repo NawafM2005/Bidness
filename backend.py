@@ -9,7 +9,12 @@ from datetime import datetime
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+# Enable CORS for all routes with specific origins
+CORS(app, origins=[
+    "https://bidness-khaki.vercel.app",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000"
+])
 
 # Environment variables
 TWILIO_ACCOUNT_SID = os.environ["TWILIO_ACCOUNT_SID"]

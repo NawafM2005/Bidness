@@ -1,0 +1,64 @@
+# Environment files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Frontend environment files
+bidness_webpage/.env
+bidness_webpage/.env.local
+bidness_webpage/.env.development
+bidness_webpage/.env.test
+bidness_webpage/.env.production
+
+# Service account credentials
+service_account.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Next.js
+bidness_webpage/.next/
+bidness_webpage/out/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
