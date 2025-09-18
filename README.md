@@ -4,7 +4,6 @@ A Next.js and Flask application for managing Twilio SMS conversations with an iM
 
 ## Features
 
-- **Secure Login**: Username: `Monky`, Password: `SonalGAP`
 - **Message Management**: View all Twilio conversations in a clean interface
 - **Real-time Messaging**: Send and receive SMS messages through Twilio
 - **iMessage-style UI**: Modern, responsive chat interface built with Tailwind CSS
@@ -57,9 +56,6 @@ A Next.js and Flask application for managing Twilio SMS conversations with an iM
 ## Usage
 
 1. Open `http://localhost:3000` in your browser
-2. Login with:
-   - Username: `Monky`
-   - Password: `SonalGAP`
 3. View your conversations in the left sidebar
 4. Click on any conversation to view messages
 5. Type in the message box and press Enter or click Send to reply

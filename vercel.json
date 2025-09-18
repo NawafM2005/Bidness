@@ -1,0 +1,7 @@
+{
+  "buildCommand": "cd bidness_webpage && npm run build",
+  "devCommand": "cd bidness_webpage && npm run dev",
+  "installCommand": "cd bidness_webpage && npm install",
+  "outputDirectory": "bidness_webpage/.next",
+  "framework": "nextjs"
+}
