@@ -1,8 +1,14 @@
 {
-  "buildCommand": "npm run build",
-  "devCommand": "npm run dev", 
-  "installCommand": "npm install",
-  "outputDirectory": ".next",
-  "framework": "nextjs",
-  "rootDirectory": "bidness_webpage"
+  "builds": [
+    {
+      "src": "bidness_webpage/package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "bidness_webpage/$1"
+    }
+  ]
 }
