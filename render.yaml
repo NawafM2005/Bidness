@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: bidness-backend
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --bind 0.0.0.0:$PORT backend:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11
+      - key: TWILIO_ACCOUNT_SID
+        sync: false
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: TWILIO_FROM
+        sync: false
+      - key: LOGIN_USERNAME
+        sync: false
+      - key: LOGIN_PASSWORD
+        sync: false
+      - key: GOOGLE_SERVICE_ACCOUNT_JSON
+        sync: false
+      - key: GSPREAD_SHEET_ID
+        sync: false
+      - key: GSPREAD_WORKSHEET
+        sync: false
