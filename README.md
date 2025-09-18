@@ -4,7 +4,6 @@ A Next.js and Flask application for managing Twilio SMS conversations with an iM
 
 ## Features
 
-- **Secure Login**: Username: `Monky`, Password: `SonalGAP`
 - **Message Management**: View all Twilio conversations in a clean interface
 - **Real-time Messaging**: Send and receive SMS messages through Twilio
 - **iMessage-style UI**: Modern, responsive chat interface built with Tailwind CSS
