@@ -247,6 +247,16 @@ export default function Dashboard() {
                 // Show conversations that have at least one inbound message (they replied at least once)
                 return messages.some((message: Message) => message.direction === 'inbound');
               })
+              .sort((contactA, contactB) => {
+                // Sort by most recent message timestamp (newest first)
+                const lastMessageA = conversations[contactA][conversations[contactA].length - 1];
+                const lastMessageB = conversations[contactB][conversations[contactB].length - 1];
+                
+                const timeA = new Date(lastMessageA.date_sent).getTime();
+                const timeB = new Date(lastMessageB.date_sent).getTime();
+                
+                return timeB - timeA; // Newest first
+              })
               .map((contact) => {
               const lastMessage = conversations[contact][conversations[contact].length - 1];
               const isUnread = isUnreadConversation(conversations[contact]);
