@@ -301,8 +301,8 @@ export default function Dashboard() {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 p-6 overflow-y-auto bg-gradient-to-br from-slate-100 via-blue-50 to-purple-50">
-              <div className="space-y-6">
+            <div className="flex-1 overflow-y-auto bg-gradient-to-br from-slate-100 via-blue-50 to-purple-50 max-h-[calc(100vh-200px)]">
+              <div className="p-6 space-y-6">
                 {conversations[selectedContact]?.map((message) => (
                   <div
                     key={message.sid}
