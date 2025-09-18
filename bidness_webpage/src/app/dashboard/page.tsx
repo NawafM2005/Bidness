@@ -28,7 +28,7 @@ export default function Dashboard() {
 
   const fetchMessages = useCallback(async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:5000'}/api/messages`);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://bidness.onrender.com'}/api/messages`);
       const data = await response.json();
       
       if (data.success) {
@@ -75,7 +75,7 @@ export default function Dashboard() {
 
     setSending(true);
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:5000'}/api/send-message`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://bidness.onrender.com'}/api/send-message`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
