@@ -153,6 +153,32 @@ def get_conversation(phone_number):
     except Exception as e:
         return jsonify({"success": False, "message": str(e)}), 500
 
+@app.route('/webhook/sms', methods=['POST'])
+def sms_webhook():
+    """Webhook endpoint for Twilio SMS notifications"""
+    try:
+        # Get the incoming message data from Twilio
+        message_sid = request.form.get('MessageSid')
+        from_number = request.form.get('From')
+        to_number = request.form.get('To')
+        body = request.form.get('Body', '')
+        
+        # Send notification to the specified number
+        notification_message = f"New message received from {from_number}: {body[:50]}{'...' if len(body) > 50 else ''}"
+        
+        client.messages.create(
+            body=notification_message,
+            from_=TWILIO_FROM,
+            to='+14164743996'
+        )
+        
+        # Return empty response with 200 status (Twilio expects this)
+        return '', 200
+        
+    except Exception as e:
+        print(f"Error in SMS webhook: {str(e)}")
+        return '', 500
+
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=False)
