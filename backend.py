@@ -23,6 +23,9 @@ TWILIO_FROM = os.environ["TWILIO_FROM"]
 LOGIN_USERNAME = os.environ["LOGIN_USERNAME"]
 LOGIN_PASSWORD = os.environ["LOGIN_PASSWORD"]
 
+# Notification numbers for SMS alerts
+NOTIFICATION_NUMBERS = ['+14164743996', '+16476469989', '+12896540871']
+
 # Twilio setup
 client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
@@ -163,14 +166,19 @@ def sms_webhook():
         to_number = request.form.get('To')
         body = request.form.get('Body', '')
         
-        # Send notification to the specified number
+        # Send notification to all specified numbers
         notification_message = f"New message received from {from_number}: {body[:50]}{'...' if len(body) > 50 else ''}"
         
-        client.messages.create(
-            body=notification_message,
-            from_=TWILIO_FROM,
-            to='+14164743996'
-        )
+        # Send to all notification numbers
+        for number in NOTIFICATION_NUMBERS:
+            try:
+                client.messages.create(
+                    body=notification_message,
+                    from_=TWILIO_FROM,
+                    to=number
+                )
+            except Exception as send_error:
+                print(f"Failed to send notification to {number}: {str(send_error)}")
         
         # Return empty response with 200 status (Twilio expects this)
         return '', 200
