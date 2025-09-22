@@ -45,9 +45,13 @@ def login():
 def get_messages():
     """Fetch all messages from Twilio"""
     try:
+        # Get today's date at midnight for filtering
+        today = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+        
         # Fetch a larger number of messages to ensure we get complete conversation history
         # This includes both messages sent by us and received by us
-        all_messages = client.messages.list(limit=1000)  # Increased limit significantly
+        # Filter messages from today onwards
+        all_messages = client.messages.list(limit=1000, date_sent_after=today)  # Only messages from today onwards
         
         # Group messages by phone number
         conversations = {}
@@ -119,9 +123,12 @@ def send_message():
 def get_conversation(phone_number):
     """Get messages for a specific phone number"""
     try:
-        # Get messages to and from this phone number
-        messages_sent = client.messages.list(to=phone_number, limit=50)
-        messages_received = client.messages.list(from_=phone_number, limit=50)
+        # Get today's date at midnight for filtering
+        today = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+        
+        # Get messages to and from this phone number from today onwards
+        messages_sent = client.messages.list(to=phone_number, limit=50, date_sent_after=today)
+        messages_received = client.messages.list(from_=phone_number, limit=50, date_sent_after=today)
         
         # Combine and sort messages
         all_messages = []
