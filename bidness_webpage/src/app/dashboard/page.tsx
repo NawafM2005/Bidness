@@ -380,6 +380,28 @@ export default function Dashboard() {
 
             {/* Message Input */}
             <div className="p-3 lg:p-4 bg-gradient-to-r from-gray-50 to-white border-t-4 border-gray-800">
+              {/* Quick Message Buttons */}
+              <div className="mb-3 flex flex-wrap gap-2">
+                <button
+                  onClick={() => setNewMessage("I recently just finished an AI phone agent that turns incoming calls into booked appointments automatically.")}
+                  className="bg-gradient-to-r from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-600 text-white px-3 py-1.5 rounded-lg text-xs lg:text-sm font-medium transition duration-200 border border-blue-600 shadow-sm"
+                >
+                  🤖 AI Agent Intro
+                </button>
+                <button
+                  onClick={() => setNewMessage("I'm looking to set up a few businesses for essentially free while I set up testimonials.")}
+                  className="bg-gradient-to-r from-green-400 to-green-500 hover:from-green-500 hover:to-green-600 text-white px-3 py-1.5 rounded-lg text-xs lg:text-sm font-medium transition duration-200 border border-green-600 shadow-sm"
+                >
+                  🆓 Free Setup
+                </button>
+                <button
+                  onClick={() => setNewMessage("Would you be open to hearing more? I can also send you a demo call with a phone agent.")}
+                  className="bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 text-white px-3 py-1.5 rounded-lg text-xs lg:text-sm font-medium transition duration-200 border border-orange-600 shadow-sm"
+                >
+                  📞 Demo Offer
+                </button>
+              </div>
+              
               <div className="flex space-x-2 lg:space-x-3">
                 <input
                   type="text"
