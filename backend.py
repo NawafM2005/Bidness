@@ -45,13 +45,14 @@ def login():
 def get_messages():
     """Fetch all messages from Twilio"""
     try:
-        # Get today's date at midnight for filtering
-        today = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+        # Hardcoded cutoff date: September 21, 2025 at midnight
+        # This will show messages from September 22 onwards
+        cutoff_date = datetime(2025, 9, 21, 0, 0, 0)
         
         # Fetch a larger number of messages to ensure we get complete conversation history
         # This includes both messages sent by us and received by us
-        # Filter messages from today onwards
-        all_messages = client.messages.list(limit=1000, date_sent_after=today)  # Only messages from today onwards
+        # Filter messages from after September 21
+        all_messages = client.messages.list(limit=1000, date_sent_after=cutoff_date)  # From September 22 onwards
         
         # Group messages by phone number
         conversations = {}
@@ -123,37 +124,43 @@ def send_message():
 def get_conversation(phone_number):
     """Get messages for a specific phone number"""
     try:
-        # Get today's date at midnight for filtering
-        today = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+        # Hardcoded cutoff date: September 21, 2025 at midnight
+        # This will show messages from September 22 onwards
+        cutoff_date = datetime(2025, 9, 21, 0, 0, 0)
         
-        # Get messages to and from this phone number from today onwards
-        messages_sent = client.messages.list(to=phone_number, limit=50, date_sent_after=today)
-        messages_received = client.messages.list(from_=phone_number, limit=50, date_sent_after=today)
+        # Get messages to and from this phone number from after September 21
+        messages_sent = client.messages.list(to=phone_number, limit=50, date_sent_after=cutoff_date)
+        messages_received = client.messages.list(from_=phone_number, limit=50, date_sent_after=cutoff_date)
         
         # Combine and sort messages
         all_messages = []
+        today_date = datetime.now().date()
         
         for msg in messages_sent:
-            all_messages.append({
-                "sid": msg.sid,
-                "body": msg.body,
-                "from": msg.from_,
-                "to": msg.to,
-                "direction": "outbound",
-                "date_sent": msg.date_sent.isoformat() if msg.date_sent else None,
-                "status": msg.status
-            })
+            # Only include messages from today
+            if msg.date_sent and msg.date_sent.date() >= today_date:
+                all_messages.append({
+                    "sid": msg.sid,
+                    "body": msg.body,
+                    "from": msg.from_,
+                    "to": msg.to,
+                    "direction": "outbound",
+                    "date_sent": msg.date_sent.isoformat() if msg.date_sent else None,
+                    "status": msg.status
+                })
         
         for msg in messages_received:
-            all_messages.append({
-                "sid": msg.sid,
-                "body": msg.body,
-                "from": msg.from_,
-                "to": msg.to,
-                "direction": "inbound",
-                "date_sent": msg.date_sent.isoformat() if msg.date_sent else None,
-                "status": msg.status
-            })
+            # Only include messages from today
+            if msg.date_sent and msg.date_sent.date() >= today_date:
+                all_messages.append({
+                    "sid": msg.sid,
+                    "body": msg.body,
+                    "from": msg.from_,
+                    "to": msg.to,
+                    "direction": "inbound",
+                    "date_sent": msg.date_sent.isoformat() if msg.date_sent else None,
+                    "status": msg.status
+                })
         
         # Sort by date
         all_messages.sort(key=lambda x: x['date_sent'] or '1970-01-01')
