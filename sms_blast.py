@@ -180,6 +180,9 @@ def main():
             })
             continue
 
+        # Append the pitch message to the original message
+        full_message = message + "\n\nI recently just finished an AI phone agent that turns incoming calls into booked appointments automatically.\n\nI'm looking to set up a few businesses for essentially free while I set up testimonials.\n\nWould you be open to hearing more? I can also send you a demo call with a phone agent."
+        
         print(f"[SEND] row={row_number} to={mask(number)} text='{preview}'")
         # Send SMS with simple retry/backoff
         sid = ""
@@ -189,7 +192,7 @@ def main():
                 msg = client.messages.create(
                     to=number,
                     from_=TWILIO_FROM,
-                    body=message
+                    body=full_message
                 )
                 sid = msg.sid
                 break

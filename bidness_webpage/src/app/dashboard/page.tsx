@@ -364,7 +364,7 @@ export default function Dashboard() {
                           : 'bg-gradient-to-r from-gray-100 to-white text-gray-800 border-gray-400'
                       }`}
                     >
-                      <div className="text-sm font-medium break-words">{message.body}</div>
+                      <div className="text-sm font-medium break-words whitespace-pre-wrap">{message.body}</div>
                       <div
                         className={`text-xs mt-2 ${
                           message.direction === 'outbound' ? 'text-blue-100' : 'text-gray-500'
@@ -383,7 +383,7 @@ export default function Dashboard() {
               {/* Quick Message Button */}
               <div className="mb-3 flex justify-center">
                 <button
-                  onClick={() => setNewMessage("I recently just finished an AI phone agent that turns incoming calls into booked appointments automatically. I'm looking to set up a few businesses for essentially free while I set up testimonials. Would you be open to hearing more? I can also send you a demo call with a phone agent.<br />I recently just finished an AI phone agent that turns incoming calls into booked appointments automatically. I'm looking to set up a few businesses for essentially free while I set up testimonials. Would you be open to hearing more? I can also send you a demo call with a phone agent.")}
+                  onClick={() => setNewMessage("I recently just finished an AI phone agent that turns incoming calls into booked appointments automatically. I'm looking to set up a few businesses for essentially free while I set up testimonials. Would you be open to hearing more? I can also send you a demo call with a phone agent.")}
                   className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition duration-200 border border-purple-600 shadow-sm hover:cursor-pointer"
                 >
                   � Use Full Pitch
